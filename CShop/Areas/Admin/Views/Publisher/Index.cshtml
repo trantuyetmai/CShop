@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WebApplication1.ModelsTest.Publisher>
+@section Scripts{
+    <script src="~/Scripts/admin_publisher.js"></script>
+}
+
+<h1>
+    <a href="@Url.Action("Add","Publisher")">
+        <img src="~/Images/new_button.png" />
+    </a>
+    Quản lý nhà sản xuất
+</h1>
+<div id="index-publisher">
+    <div class="alert-info">@ViewBag.Mess</div>
+    <table class="table table-condensed">
+        <tr>
+            <th>Nhà sản xuất</th>
+            <th>Thông tin</th>
+            <th>Số lượng sản phẩm</th>
+            <th>Tình trạng</th>
+        </tr>
+        @foreach (var p in Model)
+        {
+            <tr data-id="@p.Id">
+                <td><span>@p.Name</span></td>
+                <td><span>@p.Detail</span></td>
+                <td><a href="@Url.Action("Index", "product",new{Publisher=@p.Id})">@p.Products.Count</a></td>
+                <td>
+                    @if(@p.Status)
+                    { 
+                        @Html.ActionLink("Tắt", "DeActive", new { Id = @p.Id }, new { style = "color:red !important" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Mở", "Active", new { Id=@p.Id})
+                    }
+                </td>
+
+            </tr>
+        }
+    </table> 
+</div>

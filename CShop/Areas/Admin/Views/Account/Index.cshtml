@@ -1,0 +1,55 @@
+﻿@model   IPagedList<WebApplication1.ModelsTest.ApplicationUser>
+@using PagedList.Mvc
+@using PagedList
+<h1>Danh sách tài khoản</h1>
+@section Scripts{
+    <script src="~/Scripts/admin_account.js"></script>
+}
+<div id="index-account">
+    <div class="alert-info">@ViewBag.Mess</div>
+    <table class="table table-condensed">
+        <tr>
+            <th>Tên người dùng</th>
+            <th>Họ tên</th>
+            <th>Email</th>
+            <th>Số điện thoại</th>
+            <th>Địa chỉ</th>
+            <th>Xác thực</th>
+            <th>Quyền hạn</th>
+        </tr>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td><span>@u.UserName</span></td>
+                <td><span>@u.Name</span></td>
+                <td><span>@u.Email</span></td>
+                <td><span>@u.Phone</span></td>
+                <td><span>@u.Address</span></td>
+                <td><span>@Html.ActionLink(@u.ConfirmedEmail ? "Đã xác thực" : "Chưa xác thực", @u.ConfirmedEmail ? "" : "ActiveUser", new { UserName = @u.UserName })</span></td>
+                <td>
+                    <span>
+                        @foreach (var @r in ViewBag.Roles)
+                        {
+                            var RoleId = r.Id;
+                            if (User.Identity.Name == u.UserName)
+                            {
+                                continue;
+                            }
+                            if (@u.Roles.Any(t => t.RoleId == RoleId))
+                            {
+                                <a style="color:green !important;   " href="~/Admin/Account/DeGrant?UserName=@u.UserName&RoleName=@r.Name">@r.Name</a>
+                            }
+                            else
+                            {
+                                <a style="color: red !important; " href="~/Admin/Account/Grant?UserName=@u.UserName&RoleName=@r.Name">@r.Name</a>
+                            }
+                            <span>|</span>
+                        }
+                    </span>
+                </td>
+            </tr>
+        }
+    </table>
+        @Html.PagedListPager(Model, page => @Url.Action("Index", new { Page=page}), PagedListRenderOptions.Classic)
+   
+</div>

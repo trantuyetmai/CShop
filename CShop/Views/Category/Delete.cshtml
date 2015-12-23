@@ -1,0 +1,34 @@
+﻿@model WebApplication1.ModelsTest.Category
+
+@{
+    ViewBag.Title = "Delete";
+}
+@section Styles{
+    <link href="~/Content/category.css" rel="stylesheet" />
+    <link href="~/Content/product.css" rel="stylesheet" type="text/css" />
+}
+
+<h2>Bạn có chắc rằng bạn muốn xóa?</h2>
+<fieldset class="create-field">
+    <legend>Danh mục sản phẩm</legend>
+
+    <div class="editor-field">
+        <label>Tên danh mục</label>
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="editor-field">
+        <label>Tình trạng</label>
+        @Html.DisplayFor(model => model.Status)
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+            <div class="button-field">
+                <input type="submit" value="Xóa" />
+            </div>
+    }
+</fieldset>
+<div class="back-function">
+    @Html.ActionLink("Quay lại trang quản lý", "Index")
+</div>

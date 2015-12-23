@@ -1,0 +1,38 @@
+﻿@model WebApplication1.ModelsTest.LoginViewModel
+
+@{
+    ViewBag.Title = "Log in";
+    
+}
+
+@section Styles{
+    <link href="~/Content/manage.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm())
+{
+
+    <div >
+        <h3>Đăng nhập</h3>
+        <hr />
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <form id='register-frm'>
+            <div class="field form-group">
+                @Html.LabelFor(m => m.UserName)
+
+                @Html.EditorFor(m => m.UserName)    
+            </div>
+            <div class="field form-group">
+                @Html.LabelFor(m => m.Password)
+
+                @Html.PasswordFor(m => m.Password)
+            </div>
+            <div class="col-md-4 col-md-offset-4">
+                <input type='submit' class="btn btn-danger"  name='submit' value="Đăng nhập" />
+            </div>
+
+        </form>
+
+    </div>
+}

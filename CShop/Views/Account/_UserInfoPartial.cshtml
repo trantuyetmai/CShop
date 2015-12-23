@@ -1,0 +1,38 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@using (Html.BeginForm())
+{
+
+    <div id='userinfo-form'>
+        <h3>Thông tin tài khoản</h3>
+        <hr />
+        <form id='register-frm'>
+            <div class="info-field">
+                <label>Tên đăng nhập</label>
+                <label>@ViewBag.User.UserName</label>
+            </div>
+            <div class='info-field'>
+                <label>Tên</label>
+                <label>@ViewBag.User.Name</label>
+            </div>
+            <div class='info-field'>
+                <label>Số điện thoại</label>
+                <label>@ViewBag.User.Phone</label>
+            </div>
+            <div class='info-field'>
+                <label>Email</label>
+                <label>@ViewBag.User.Email</label>
+            </div>
+            <div class='info-field'>
+                <label>Địa chỉ</label>
+                <label>@ViewBag.User.Address</label>
+            </div>
+        </form>
+
+    </div>
+
+}

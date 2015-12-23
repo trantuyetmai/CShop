@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "ConfirmOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/shoppingcart.css")
+
+@using (Html.BeginForm(new { orderId = @ViewBag.Order.Id }))
+{
+    <div class="confirmOrder">
+        <h3>Xác nhận đơn hàng</h3>
+        <hr />
+        <fieldset>
+            <div class="user-info-order">
+                <h4>Thông tin khách hàng</h4>
+                <div class='info-field'>
+                    <label>Tên khách hàng: </label>
+                    <label>@ViewBag.User.Name</label>
+                </div>
+                <div class='info-field'>
+                    <label>Số điện thoại: </label>
+                    <label>@ViewBag.User.Phone</label>
+                </div>
+                <div class='info-field'>
+                    <label>Email: </label>
+                    <label>@ViewBag.User.Email</label>
+                </div>
+                <div class='info-field'>
+                    <label>Địa chỉ: </label>
+                    <label>@ViewBag.User.Address</label>
+                </div>
+
+
+            </div>
+
+            <div class="receiver-info-order">
+                <h4>Thông tin người nhận</h4>
+                <div class='info-field'>
+                    <label>Tên người nhận: </label>
+                    <label>@ViewBag.Order.ReceiverName</label>
+                </div>
+                <div class='info-field'>
+                    <label>Số điện thoại: </label>
+                    <label>@ViewBag.Order.ReceiverPhone</label>
+                </div>
+                <div class='info-field'>
+                    <label>Địa chỉ: </label>
+                    <label>@ViewBag.Order.ReceiverAddress</label>
+                </div>
+            </div>
+        </fieldset>
+        <p></p>
+        <h3>Sản phẩm đã mua</h3>
+        <div class="cart-item-table height-100">
+            <table>
+                <thead>
+                    <tr>
+                        <td id="text-left">Tên sản phẩm</td>
+                        <td>Loại sản phẩm</td>
+                        <td>Số lượng</td>
+                        <td id="text-right">Giá tiền</td>
+                        <td id="text-right">Giá</td>
+                    </tr>
+                </thead>
+                @{
+    double total = 0;
+    int i = 0;
+    foreach (var item in ViewBag.Products)
+    {
+        double cost = item.Cost * ViewBag.ProductsQuantity[i];
+        total += cost;
+        String x = "cartitem" + item.Id;
+        <tr class="@x">
+            <td id="text-left">
+                <a href='@Url.Action("Details", "Product", new { id = item.Id })'>
+                    @item.Name
+                </a>
+            </td>
+            <td>@item.Category.Name</td>
+            <td>@ViewBag.ProductsQuantity[i]</td>
+            <td id="text-right"><label>@item.Cost</label></td>
+            <td id="text-right"><label>@cost</label></td>
+        </tr>
+        i++;
+    }
+
+                }
+            </table>
+
+
+            <div class="cart-total">
+                <hr />
+                <span id="cost-text"> @total</span>
+                <span id="total-text">Tổng tiền: </span>
+            </div>
+
+            <div>
+                <input type='submit' class="btn-field" name='submit' value="Xác nhận" />
+            </div>
+        </div>
+
+    </div>
+}

@@ -1,0 +1,55 @@
+﻿@model PagedList.PagedList<WebApplication1.ModelsTest.Product>
+@using PagedList.Mvc
+
+@section Scripts{
+    <script src="~/Scripts/admin_product.js"></script>
+}
+
+<div id="index-product">
+    <h1>
+        <a href="@Url.Action("Add","Product")">
+            <img src="~/Images/new_button.png" />
+        </a>
+    Danh sách sản phẩm
+    </h1>
+
+    <table class="table table-condensed">
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Mô tả</th>
+            <th>Hình hảnh</th>
+            <th>Gian hàng</th>
+            <th>Nhà sx</th>
+            <th>Số lần truy cập</th>
+            <th>Tình trạng</th>
+        </tr>
+
+        @foreach (var p in Model)
+        {
+            <tr data-id="@p.Id">
+                <td><span>@p.Name</span></td>
+                <td><span>@p.Cost</span></td>
+                <td><span>@p.Detail</span></td>
+                <td><img class="img-thumbnail" src='@Url.Content("~" + @p.Image)' /></td>
+                <td>@p.Category.Name</td>
+                <td>@p.Publisher.Name</td>
+                <td>@p.TimeAccess</td>
+                <td>
+                    @if (@p.Status)
+                    {
+                        @Html.ActionLink("Tắt", "DeActive", new { Id = @p.Id })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Mở", "Active", new { Id = @p.Id })
+                    }
+                </td>
+            </tr>
+        }
+        <input type="file" name="Image" style="width:0; height:0" />
+    </table> 
+    <div class="pagination">
+        @Html.PagedListPager(Model, page => @Url.Action("Index", new { Page=page}))
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebApplication1.ModelsTest.Product>
+
+@{
+    ViewBag.Title = "ViewByType";
+}
+
+
+<link href="~/CSS/default.css" rel="stylesheet" type="text/css" />
+<link href="~/CSS/product.css" rel="stylesheet" type="text/css" />
+<link href="~/CSS/new_product.css" rel="stylesheet" type="text/css" />
+
+
+
+<div id="right-content">
+    <h2>Danh sách sản phẩm</h2>
+    <table class="detail-product">
+        <tr>
+            <th>
+                @Html.ActionLink("Tên sản phẩm", "ViewByType", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Giá tiền", "ViewByType", new { sortOrder = ViewBag.CostSortParm })
+            </th>
+            <th>
+                Chi tiết
+            </th>
+            <th>
+                @Html.ActionLink("Tình trạng", "ViewByType", new { sortOrder = ViewBag.StatusSortParm })
+
+            </th>
+            <th>
+                Loại sản phẩm
+            </th>
+            <th>
+                Nhà sản xuất
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost) VNĐ
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Detail)
+                </td>
+                <td>
+                    @{
+            var status = "";
+            if (item.Status)
+            {
+                status = "Có hàng";
+            }
+            else
+            {
+                status = "Hết hàng";
+            }
+                    }
+                    @status
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Publisher.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

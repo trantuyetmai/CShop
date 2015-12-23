@@ -1,0 +1,20 @@
+﻿
+<div>
+    <div class="alert-info">@ViewBag.Mess</div>
+    <form action="~/Admin/Publisher/Add" method="post">
+        <div class="form-group">
+            <input type="text" class="form-control" name="Name" placeholder="Tên nhà sản xuất" />
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" name="Detail" placeholder="Mô tả"></textarea>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" class="form-control" name="Status" value="true" checked />
+        </div>
+
+        <input type="submit" class="btn btn-default"  value="Thêm" />
+        <a href="~/Admin/Publisher/Index">
+            <input type="button" class="btn btn-default" value="Trở về quản lý" />
+        </a>
+    </form>
+</div>

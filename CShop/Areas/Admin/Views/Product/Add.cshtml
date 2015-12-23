@@ -1,0 +1,64 @@
+﻿
+@section Scripts{
+    <script src="~/Scripts/admin_product.js"></script>
+}
+<div id="add-product">
+    <div class="alert-info">@ViewBag.Mess</div>
+    <form class="col-md-10" action="~/Admin/Product/Add" method="post" enctype="multipart/form-data">
+        <div class="form-group ">
+            <input class="form-control " name="Name" type="text" placeholder="Tên sản phẩm" title="Không được bỏ trống" pattern=".+" />
+        </div>
+        <div class="form-group ">
+            <input class="form-control" type="number" name="Cost" placeholder="Giá" title="Chỉ nhập từ 1->15 chữ số thôi" pattern="^[0-9]{1,15}$" />
+
+        </div>
+        <div class="form-group ">
+            <textarea class="form-control" name="Detail" placeholder="Mô tả" title="Chỉ nhập từ tối đa 300 kí tự" maxlength="300"></textarea>
+        </div>
+        <div class="form-group">
+            <!-- Split button Category -->
+            <div class="btn-group" data-inputname="CategoryId">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Chọn gian hàng
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    @foreach (var c in ViewBag.Categories)
+                    {
+                        <li data-id="@c.Id"><a>@c.Name</a></li>
+                    }
+                </ul>
+            </div>
+            <!-- Split button Publisher -->
+            <div class="btn-group" data-inputname="PublisherId">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    Chọn nhà sx
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    @foreach (var p in ViewBag.Publishers)
+                    {
+                        <li data-id="@p.Id"><a>@p.Name</a></li>
+                    }
+                </ul>
+            </div>
+            <input type="hidden" name="PublisherId" />
+            <input type="hidden" name="CategoryId" />
+        </div>
+
+        <div class="form-group">
+            <img class="img-thumbnail" />
+            <input class="form-control" type="file" name="File" title="Chọn hình ảnh..." />
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="Status" value="true" checked> Tình trạng
+            </label>
+        </div>
+        <input class="btn btn-default" type="submit" value="Thêm" />
+        <a href="~/Admin/Product/Index">
+            <input class="btn btn-default" type="button" value="Về trang quản lý" />
+        </a>
+
+    </form>
+</div>

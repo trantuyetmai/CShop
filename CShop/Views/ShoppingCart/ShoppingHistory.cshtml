@@ -1,0 +1,65 @@
+﻿@model WebApplication1.ModelsTest.ShoppingHistory
+@{
+    ViewBag.Title = "ShoppingHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/shoppingcart.css")
+
+<h2>Lịch sử mua sắm</h2>
+
+<div class="history-shopping-field">
+
+
+    <div class="order-field">
+        @{
+            foreach (var orderitem in Model.orders)
+            {
+                <p>Ngày mua: @orderitem.order.DateOrder.ToShortDateString()</p>
+                <div class="cart-item-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td id="text-left">Tên sản phẩm</td>
+                                <td>Loại sản phẩm</td>
+                                <td>Số lượng</td>
+                                <td id="text-right">Giá tiền</td>
+                                <td id="text-right">Giá</td>
+                            </tr>
+                        </thead>
+                        @{
+                double total = 0;
+                int i = 0;
+                foreach (var item in orderitem.products)
+                {
+                    double cost = item.Cost * orderitem.productQuantitys[i];
+                    total += cost;
+                    String x = "cartitem" + item.Id;
+                    <tr class="@x">
+                        <td id="text-left">
+                            <a href='@Url.Action("Details", "Product", new { id = item.Id })'>
+                                @item.Name
+                            </a>
+                        </td>
+                        <td>@item.Category.Name</td>
+                        <td>@orderitem.productQuantitys[i]</td>
+                        <td id="text-right"><label>@item.Cost</label></td>
+                        <td id="text-right"><label>@cost</label></td>
+                    </tr>
+                    i++;
+                }
+
+                        }
+                    </table>
+
+
+                    <div class="cart-total">
+                        <hr />
+                        <span id="cost-text"> @total</span>
+                        <span id="total-text">Tổng tiền: </span>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+</div>

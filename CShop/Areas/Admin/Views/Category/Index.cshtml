@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebApplication1.ModelsTest.Category>
+@section Scripts{
+    <script src="~/Scripts/admin_category.js"></script>
+}
+<h1>
+    <a href="@Url.Action("Add","Category")">
+        <img src="~/Images/new_button.png" />
+    </a>
+    Quản lý gian hàng
+</h1>
+<div id="index-category">
+    <table class="table table-condensed">
+        <tr>
+            <th><span>Gian hàng</span> </th>
+            <th>Số lượng sản phẩm</th>
+            <th>Tình trạng</th>
+            
+        </tr>
+        @foreach (var c in Model)
+        {
+            <tr data-id="@c.Id">
+                <td><span>@c.Name</span></td>
+                <td><a href="~/Admin/Product/Index?Category=@c.Id">@c.Products.Count</a></td>
+                <td>
+                    @if(@c.Status)
+                    { 
+                        @Html.ActionLink("Tắt", "DeActive", new { Id = @c.Id }, new { style = "color:red !important;" })
+                    }
+                    else
+                    { 
+                        @Html.ActionLink("Mở", "Active", new { Id = @c.Id }, new { style=""})
+                    }
+                </td>
+            </tr>
+        }
+        
+    </table>
+</div>

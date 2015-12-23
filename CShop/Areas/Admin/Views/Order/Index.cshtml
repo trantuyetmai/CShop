@@ -1,0 +1,95 @@
+﻿@model PagedList.IPagedList<WebApplication1.ModelsTest.Order>
+@using WebApplication1.ModelsTest
+
+<div>
+    @foreach (var order in Model)
+    {
+        var OrderProducts = from op in (ViewBag.OrderProducts as IQueryable<OrderProduct>) where op.OrderId==order.Id select op;
+
+        //Thông tin khách
+        <h2 style="color: red !important">Đơn đặt hàng số @order.Id</h2>
+    <table class="table table-condensed ">
+        <tr>
+            <th>Ngày</th>
+            <th>Người đặt</th>
+            <th>Người nhận</th>
+            <th>Ghi chú</th>
+            <th>Tình trạng</th>
+        </tr>
+        <tr>
+            <td>@order.DateOrder</td>
+            <td>
+                <!--Khách hàng đặt-->
+                <table class="table table-condensed" style="color:black">
+                    <tr>
+                        <th>Tên</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                    </tr>
+                    <tr>
+                        <td>@order.User.Name</td>
+                        <td>@order.User.Email</td>
+                        <td>@order.User.Phone</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <!--Khách hàng nhận-->
+                <table class="table table-condensed" style="color:black">
+                    <tr>
+                        <th>Tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Địa chỉ</th>
+                    </tr>
+                    <tr>
+                        <td>@order.ReceiverName</td>
+                        <td>@order.ReceiverPhone</td>
+                        <td>@order.ReceiverAddress</td>
+                    </tr>
+                </table>
+            </td>
+            <td>@order.Notes</td>
+            <td>@order.DeliveryStatus.Name</td>
+        </tr>
+    </table>
+        //Danh sách SP
+        <h3>Danh sách sản phẩm</h3>
+        <table class="table table-condensed">
+            <tr>
+                <th>Tên sản phẩm</th>
+                <th>Loại</th>
+                <th>Đơn giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+            
+            <tr>               
+                @{
+                double Total = 0;
+                double sum;
+                foreach (var op in @OrderProducts)
+                {
+                    sum = op.ProductQuantity * op.Product.Cost;
+                    Total += sum;
+                    <td>@op.Product.Name</td>
+                    <td>@op.Product.Category.Name</td>
+                    <td>@op.Product.Cost</td>
+                    <td>@op.ProductQuantity</td>
+                    <td>@sum</td>
+                }
+                }
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Tổng cộng</td>
+                <td>@Total</td>
+            </tr>
+             
+        </table>
+        <br />
+        <br />
+    }
+    
+</div>

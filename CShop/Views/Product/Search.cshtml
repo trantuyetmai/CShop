@@ -1,0 +1,136 @@
+﻿@model PagedList.IPagedList<WebApplication1.ModelsTest.Product>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Search";
+}
+
+@section Styles{
+    <link href="~/Content/search.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/Scripts/search.js"></script>
+}
+
+<h2>Tìm kiếm sản phẩm</h2>
+
+@using (Html.BeginForm("Search","Product", FormMethod.Get))
+{
+    <div class="form-inline" role="form">
+        <div class="form-group">
+            <input type="text" class="form-control" name="Name" placeholder="Tên sản phẩm" />
+        </div>
+        <div class="form-group">
+            <input type="submit" class="form-control btn btn-danger" value="Tìm" />
+        </div>
+    </div>
+
+
+    //search bar
+    <div class="product-filter">
+        <ul>
+            <li class="title"> <span>Tìm theo</span> </li>
+            <li class="filter" data-name="Category">
+                Sản phẩm
+                <ul>
+                    @if(ViewBag.Category==null ){            
+                        <li data-id='' class="checked">Tất cả</li>
+                    }
+                    else { 
+                        <li data-id="-1">Tất cả</li>
+                    }
+                    @if (ViewBag.Categories !=null)
+                    { 
+                        foreach (var c in ViewBag.Categories)
+                        {
+                            if(c.Id!=ViewBag.Category){
+                                <li data-id='@c.Id'>@c.Name</li>
+                            }
+                            else {                               
+                             <li data-id='@c.Id' class="checked">@c.Name</li>
+                            }
+                        }
+                   }
+
+                </ul>
+            </li>
+            <li class="filter" data-name="Price">
+                Mức giá
+                <ul>
+                    @if(ViewBag.Price==null){
+                        <li data-id="-1" class="checked">Tất cả</li>
+                    }
+                    else { 
+                        <li data-id="-1" >Tất cả</li>
+                    }
+                    @if(ViewBag.Prices!=null)
+                    {
+                        foreach (var item in ViewBag.Prices)
+                        {
+                            if (@item.GetType().GetProperty("Id").GetValue(@item, null) != ViewBag.Price)
+                            {
+                                <li data-id='@item.GetType().GetProperty("Id").GetValue(@item, null)'>@item.GetType().GetProperty("Name").GetValue(@item, null)</li>
+                            }
+                            else { 
+                                <li class="checked" data-id='@item.GetType().GetProperty("Id").GetValue(@item, null)'>@item.GetType().GetProperty("Name").GetValue(@item, null)</li>
+                            }
+                        }
+                    }
+                </ul>
+            </li>
+            <li class="filter" data-name="Publisher">
+                Nhà sản xuất
+                <ul>
+                    @if (ViewBag.Publisher == null) { 
+                        <li data-id="" class="checked">Tất cả</li>
+                    }
+                    else { 
+                        <li data-id="">Tất cả</li>
+                    }
+                    @if (ViewBag.Publishers != null)
+                    {
+                        foreach (var pub in ViewBag.Publishers)
+                        {
+                            if(ViewBag.Publisher!=pub.Id){
+                                <li data-id='@pub.Id'>@pub.Name</li>
+                            }
+                            else { 
+                                <li data-id='@pub.Id' class="checked">@pub.Name</li>
+                            }
+                        }
+                    }
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <input type="hidden" name="Price" value="" />
+    <input type="hidden" name="Category" value="" />
+    <input type="hidden" name="Publisher" value="" />
+    
+}
+
+ <!-- Begin new products -->
+<div id='products'>
+    @foreach (var m in Model)
+    {
+        <a href='@Url.Action("Details", "Product", new {Id=@m.Id })'>
+            <div class='product'>
+                <img src='@m.Image' />
+                <div class='name-product'>@m.Name</div>
+                <div class='price-product'>@m.Cost VND</div>
+            </div>
+        </a>
+    }
+      
+</div>
+<!-- End new products -->   
+
+@* Paginate *@
+ @Html.PagedListPager(Model, page => Url.Action("Search",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+
+

@@ -1,0 +1,40 @@
+﻿@using WebApplication1.ModelsTest;
+@using Microsoft.AspNet.Identity;
+@model BigModel
+@{
+    ViewBag.Title = "Tùy chỉnh tài khoản";
+}
+
+
+
+@section Styles{
+    <link href="~/Content/manage.css" rel="stylesheet" />
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/manage.js"></script>
+}
+
+
+<div class="manage-form">
+    <h2>@ViewBag.Title</h2>
+    <p class="text-success">@ViewBag.StatusMessage</p>
+    <input type="button" id="userinfo-btn" value="Thông tin cá nhân" />
+    <input type="button" id="changePass-btn" value="Thay đổi mật khẩu" />
+    <input type="button" id="changeinfo-btn" value="Thay đổi thông tin" />
+
+    <div class="manage-content">
+        @if (ViewBag.HasLocalPassword)
+        {
+              Html.RenderPartial("_ChangePasswordPartial",Model.Manage);
+            Html.RenderPartial("_ChangeInfoPartial", Model.ChangeInfo);
+            Html.RenderPartial("_UserInfoPartial");
+        }
+        else
+        {
+           
+        }
+
+       
+    </div>
+</div>

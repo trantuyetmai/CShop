@@ -1,0 +1,93 @@
+﻿@charset "utf-8";
+/* CSS Document */
+#registry-content
+{
+	padding: 1px 20px;
+	background: rgba(228,228,228,0.35);
+}
+
+.field
+{
+	display:block;
+
+	margin: 0 0 20px 40px;
+}
+.field > label
+{
+	width:150px;
+	float:left;
+	text-align:right;
+	margin-right:20px;
+	position:relative;
+	margin-top:4px;
+}
+.field > input
+{
+	width: 250px;
+	height:30px;
+	
+background: -moz-linear-gradient(top,  rgba(80,80,80,0.5) 0%, rgba(255,255,255,0.5) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(80,80,80,0.5)), color-stop(100%,rgba(255,255,255,0.5)));
+background: -webkit-linear-gradient(top,  rgba(80,80,80,0.5) 0%,rgba(255,255,255,0.5) 100%);
+background: -o-linear-gradient(top,  rgba(80,80,80,0.5) 0%,rgba(255,255,255,0.5) 100%);
+background: -ms-linear-gradient(top,  rgba(80,80,80,0.5) 0%,rgba(255,255,255,0.5) 100%);
+background: linear-gradient(to bottom,  rgba(80,80,80,0.5) 0%,rgba(255,255,255,0.5) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80505050', endColorstr='#80ffffff',GradientType=0 );
+
+
+text-indent: 7px;
+border-radius:4px;
+box-shadow: 1px 1px 2px #FFD6D6;
+border: 0px solid #901417;
+
+}
+
+.field > a 
+{
+    margin-left:25%;
+}
+
+.field > a:hover 
+{
+    color:cadetblue;
+}
+
+
+#CaptchaInputText
+{
+    margin-left:25%;
+}
+#reg-submit-input
+{
+background: rgb(80,80,80);
+background: -moz-linear-gradient(left,  rgba(80,80,80,1) 0%, rgba(170,30,47,1) 100%);
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(80,80,80,1)), color-stop(100%,rgba(170,30,47,1)));
+background: -webkit-linear-gradient(left,  rgba(80,80,80,1) 0%,rgba(170,30,47,1) 100%);
+background: -o-linear-gradient(left,  rgba(80,80,80,1) 0%,rgba(170,30,47,1) 100%);
+background: -ms-linear-gradient(left,  rgba(80,80,80,1) 0%,rgba(170,30,47,1) 100%);
+background: linear-gradient(to right,  rgba(80,80,80,1) 0%,rgba(170,30,47,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#505050', endColorstr='#aa1e2f',GradientType=1 );
+
+
+	box-shadow: 0 1px 4px #FFD6D6;
+	
+	font-size:20px;
+	font-family: Baskerville, "Palatino Linotype", Palatino, "Century Schoolbook L", "Times New Roman", serif;
+	cursor:pointer;
+	height:40px;
+	border:none;
+	border-radius: 40px 2px 40px 2px;
+	margin: 20px 0 0 170px;;
+}
+#reg-submit-input:hover
+{
+background: rgb(80,80,80);
+background: -moz-linear-gradient(left,  rgba(80,80,80,1) 0%, rgba(196,60,76,1) 100%);
+background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(80,80,80,1)), color-stop(100%,rgba(196,60,76,1)));
+background: -webkit-linear-gradient(left,  rgba(80,80,80,1) 0%,rgba(196,60,76,1) 100%);
+background: -o-linear-gradient(left,  rgba(80,80,80,1) 0%,rgba(196,60,76,1) 100%);
+background: -ms-linear-gradient(left,  rgba(80,80,80,1) 0%,rgba(196,60,76,1) 100%);
+background: linear-gradient(to right,  rgba(80,80,80,1) 0%,rgba(196,60,76,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#505050', endColorstr='#c43c4c',GradientType=1 );
+text-shadow: 2px 0 5px  rgba(95,227,118,0.83);
+}

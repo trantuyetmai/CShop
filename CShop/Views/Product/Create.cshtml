@@ -1,0 +1,78 @@
+﻿@model WebApplication1.ModelsTest.Product
+
+@{
+    ViewBag.Title = "Create";
+}
+@section Styles{
+<link href="~/Content/product.css" rel="stylesheet" />
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+        <fieldset class="create-field">
+            <legend class="title-field">Thêm sản phẩm</legend>
+
+            <div class="editor-field">
+                <label>Tên sản phẩm</label>
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+
+            <div class="editor-field">
+                <label>Giá</label>
+
+                @Html.EditorFor(model => model.Cost)
+                @Html.ValidationMessageFor(model => model.Cost)
+
+            </div>
+
+            <div class="editor-field">
+                <label>Chi tiết</label>
+
+                @Html.EditorFor(model => model.Detail)
+                @Html.ValidationMessageFor(model => model.Detail)
+
+            </div>
+            <div class="editor-field">
+                <label>Tình trạng </label>
+
+                @Html.EditorFor(model => model.Status)
+                @Html.ValidationMessageFor(model => model.Status)
+            </div>
+
+            <div class="editor-field">
+                <label>Loại sản phẩm</label>
+                @Html.DropDownList("CategoryId", String.Empty)
+                @Html.ValidationMessageFor(model => model.CategoryId)
+            </div>
+
+            <div class="editor-field">
+                <label>Nhà sản xuất</label>
+                @Html.DropDownList("PublisherId", String.Empty)
+                @Html.ValidationMessageFor(model => model.PublisherId)
+            </div>
+            <div class="editor-field">
+                <label>Hình ảnh</label>
+                <input type="file" name="file" />
+            </div>
+            <div class="button-field">               
+                <input type="submit" value="Thêm sản phẩm" id=submit />
+            </div>
+
+
+        </fieldset>
+                <p>
+                @Html.ActionLink("Quay lại trang quản lý", "Index")
+            </p>
+}
+
+
+
+

@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Log in";
+}
+
+<div >
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <input type="text" id='email-input' class="form-control" name='Username' placeholder="Nhập username"></input>
+        </div>
+        <div class="form-group">
+            <input type="password" id='pass-input' class="form-control" name='PassWord' placeholder="Nhập mật khẩu"></input>
+        </div>
+        <div class="form-group">
+        <input type='submit' class="btn btn-danger form-control" value='Đăng nhập'></input>
+    </div>
+        <div class="form-group" >
+            <input type="checkbox" name="RememberMe" id='remember-chkb' value="true"></input>
+            Ghi nhớ
+        </div>
+    
+        <div>
+            <a href="@Url.Action("ForgotPassword","Account")">Quên mật khẩu rùi!</a>
+        </div>
+
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/script/jqueryval")
+}

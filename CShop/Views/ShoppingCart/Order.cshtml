@@ -1,0 +1,36 @@
+﻿@model WebApplication1.ModelsTest.OrderViewModels
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/shoppingcart.css")
+
+<div class="order-info">
+    <h3>THÔNG TIN ĐẶT HÀNG</h3>
+    <hr />
+@using (Html.BeginForm())
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <form id='register-frm'>
+        <div class='field'>
+            @Html.LabelFor(m => m.ReceiverName)
+            @Html.EditorFor(m => m.ReceiverName, "name")
+        </div>
+        <div class='field'>
+            @Html.LabelFor(m => m.ReceiverPhone)
+            @Html.EditorFor(m => m.ReceiverPhone, "phonenumber")
+        </div>
+        <div class='field'>
+            @Html.LabelFor(m => m.ReceiverAddress)
+            @Html.EditorFor(m => m.ReceiverAddress, "email")
+        </div>
+        <div>
+            <input type='submit' class="btn-field" name='submit' value="Đặt hàng" />
+        </div>
+
+    </form>
+}
+</div>
+

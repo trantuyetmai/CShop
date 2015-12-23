@@ -1,0 +1,57 @@
+﻿table{
+    width:100%;
+    background: rgba(210,200,200,0.3);
+}
+
+th{
+    padding: 5px;
+    overflow:hidden;
+    color:dodgerblue;
+}
+
+#add-product{
+    margin-top:0;
+    display:flex;
+}
+#add-product *{
+    margin: auto 0 auto 0;
+}
+#add-product  img{
+    background: center;
+    margin-right: 10px;
+}
+
+/* ============== Create Function =============*/
+.create-field{
+    font-size: 18px;
+    background: rgba(210,200,200,0.3);
+}
+.title-field{
+    font-size:22px;
+}
+.editor-field{
+    clear:both;
+    margin: 5px 0;
+    width:100%;
+    height:40px;
+}
+.editor-field > label{
+    float: left;
+    width: 170px;
+}
+.editor-field >input{
+    float:left;
+}
+.editor-field >input[type=text], .editor-field >select{
+    height:30px;
+    width:250px;
+}
+
+ .back-function
+ {
+     margin-top: 5px;
+ }
+ .back-function:hover
+ {
+     color:red;
+ }

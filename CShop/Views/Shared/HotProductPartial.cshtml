@@ -1,0 +1,26 @@
+﻿
+@model  IQueryable<WebApplication1.ModelsTest.Product>
+
+<div id="popular-product" class="left-box">
+    <div class="cat-head">Sản phẩm Hot</div><!-- catogory title -->
+    <div class="details">
+        @if (Model.Count() == 0)
+        {
+            <div class="hot-product">
+                Không tìm thấy
+            </div>
+        }
+        @foreach (var p in Model)
+        {
+            <a href='@Url.Action("Details", "Product", new{Id=@p.Id,area=""})'>
+                <div class='hot-product'>
+                    <img src='@Url.Content("~" + @p.Image)' />
+                    <div class='hot-product-name'>@p.Name</div>
+                    <div class='hot-product-price'>@p.Cost.ToString("##,#") VND</div>
+                </div>
+            </a>
+            
+        }
+
+    </div><!-- details -->
+</div>

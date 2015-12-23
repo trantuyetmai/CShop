@@ -1,0 +1,31 @@
+﻿@model WebApplication1.ModelsTest.Category
+
+@{
+    ViewBag.Title = "Details";
+}
+@section Styles{
+<link href="~/Content/category.css" rel="stylesheet" />
+}
+
+<fieldset class="create-field">
+    <legend>Chi tiết</legend>
+
+    <div class="editor-field">
+        <label>Tên danh mục</label>
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="editor-field">
+         <label>Tình trạng</label>
+        @Html.DisplayFor(model => model.Status)
+    </div>
+</fieldset>
+<span class="back-function">
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.Id }) 
+</span> 
+|
+<span class="back-function">
+    @Html.ActionLink("Quay lại trang quản lý", "Index")
+</span>
+  
+

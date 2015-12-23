@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WebApplication1.ModelsTest.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+@section Styles{
+<link href="~/Content/product.css" rel="stylesheet" />
+}
+
+<h2 id="add-product">
+    <a href="@Url.Action("Create", "Product")">
+        <img src="~/Images/new_button.png" />
+    </a>
+    @Html.ActionLink("Thêm mới", "Create")
+</h2>
+
+@using (Html.BeginForm("ViewByType", "Product"))
+{
+
+    <table>
+        <tr>
+            <th>
+                @Html.ActionLink("Tên sản phẩm", "ViewByType", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Giá tiền", "ViewByType", new { sortOrder = ViewBag.CostSortParm })
+            </th>
+            <th>
+                Chi tiết
+            </th>
+            <th>
+                @Html.ActionLink("Tình trạng", "ViewByType", new { sortOrder = ViewBag.StatusSortParm })
+
+            </th>
+            <th>
+                Loại sản phẩm
+            </th>
+            <th>
+                Nhà sản xuất
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Detail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Publisher.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    
+}

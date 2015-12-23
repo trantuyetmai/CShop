@@ -1,0 +1,157 @@
+﻿
+<!DOCTYPE>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+
+
+    @Styles.Render("~/css/bootstrap")
+    @Styles.Render("~/css/mystyles")
+    @Scripts.Render("~/script/jquery")
+    @Scripts.Render("~/script/bootstrap")
+    @Scripts.Render("~/script/myscripts")
+    @RenderSection("Styles", false)
+    
+</head>
+<body>
+    @Html.Raw(TempData["msg"])
+    <div id="container">
+        <!-- begin header -->
+        <div id="header">
+            
+            <div class="navigations">
+                <div id="cart" class="navigation">
+                    <a href='@Url.Action("Index", "ShoppingCart")'>
+                        <img src="~/images/icon_cart.png" />
+                        <div>Giỏ hàng</div>
+                    </a>
+                </div>
+                <div id="contact" class="navigation">
+
+                    <a href='@Url.Action("Index", "Contact")'>
+                        <img src="~/images/icon_contact.png" />
+                        <div>Liên hệ</div>
+                    </a>
+                </div>
+                <div id="search" class="navigation">
+                    <a href='@Url.Action("Search", "Product")'>
+                        <img src="~/images/icon_search.png" />
+                        <div>Tìm kiếm</div>
+                    </a>
+                </div>
+                <div id="home" class="navigation">
+                    <a href="@Url.Action("Index","Home")">
+                        <img src="~/images/icon_home.png" />
+                        <div>Trang chủ</div>
+                    </a>
+                </div>
+                @Html.Partial("_LoginPartial")
+
+                
+            </div>
+        </div>
+        <!-- end header -->
+        <!-- begin menu-and-support -->
+        <div id="menu-and-support">
+            <!-- begin wrapper menu -->
+            <div id="top-menu" class="wrapper-menu">
+                <ul>
+                    <li><a href='@Url.Action("Index","Home")'>Trang chủ</a></li>
+                    <li >
+                        <a href='@Url.Action("Index","Home")'>Sản phẩm mới</a>
+                    </li>
+                    <li><a href='@Url.Action("Index", "Home")'>Sản phẩm hot</a></li>
+                    <li><a href='@Url.Action("Index", "ShoppingCart")'>Giỏ hàng</a></li>
+                    <li><a href='@Url.Action("Index", "Contact")'>Liên hệ</a></li>
+                </ul>
+            </div>
+            <!-- end wrapper menu -->
+            <div id="support">
+                <div id='supporter-1' class='supporter'>
+                    <img src="~/images/yahoo_on.png" />
+                    <div class='desc'>Kỹ thuật 1 (0908989911)</div>
+                </div>
+                <div id='supporter-2' class='supporter'>
+                    <img src="~/images/yahoo_on.png" />
+                    <div class='desc'>Kỹ thuật 2 (0908989911)</div>
+                </div>
+                <div id='supporter-3' class='supporter'>
+                    <img src="~/images/yahoo_off.png" />
+                    <div class='desc'>Kỹ thuật 3 (0908989911)</div>
+                </div>
+                <div id='supporter-4' class='supporter'>
+                    <img src="~/images/yahoo_on.png" />
+                    <div class='desc'>Chăm sóc khách hàng 1 (0908989911)</div>
+                </div>
+                <div id='supporter-5' class='supporter'>
+                    <img src="~/images/yahoo_off.png" />
+                    <div class='desc'>Chăm sóc khách hàng 2 (0908989911)</div>
+                </div>
+                <div id='supporter-6' class='supporter'>
+                    <img src="~/images/yahoo_off.png" />
+                    <div class='desc'>Chăm sóc khách hàng 3 (0908989911)</div>
+                </div>
+                <form id="quick-search" action="~/Product/Search" method="get">
+                    <input type="text" id='search-input' name='Name' placeholder='Tìm kiếm...' />
+                </form>
+                    <img id="search-img" src="~/images/search.png" />
+                    <img id='call-img' src="~/images/call_icon.png" />
+                    <span id='support-phone'>090.8989.936</span>
+</div><!-- support -->
+        </div><!-- end menu-and-support-->
+
+        <!-- begin content -->
+        <div id="content">
+
+            <!-- begin left content -->
+            <div id="left-content">
+                <!-- category product -->
+                @Html.Action("List", "Category", new { area = "" })
+                <!-- popular-product-->
+                @Html.Action("HotProduct", "Product", new { area = "" })
+            </div>
+            <!-- end left content -->
+            <!-- begin right content -->
+            <div id="right-content">
+                <!-- =================================== Thêm phần mới tại đây =========================== -->
+                @RenderBody()
+            </div>
+            <!-- end right content -->
+
+        </div><!-- end content-->
+        <!-- begin footer -->
+        <div id="footer">
+            <div id='footer-logo'></div>
+            <div id='partners'>
+                <p><b>Đối tác</b></p>
+                <img src='~/images/acer.jpg' />
+                <img src='~/images/amd.jpg' />
+                <img src='~/images/asrock.jpg' />
+                <img src='~/images/asus.jpg' />
+                <img src='~/images/gigabyte.jpg' />
+                <img src='~/images/Intel.jpg' />
+                <img src='~/images/kingston.jpg' />
+                <img src='~/images/logitech.jpg' />
+                <img src='~/images/nvidia.jpg' />
+            </div>
+            <div id='footer-contact'>
+                <p><b>Liên hệ</b></p>
+                <b>CÔNG TY TRÁCH NHIỆM 2 THÀNH VIÊN</b>
+                <p>Địa chỉ: DHKHTN, Hồ Chí Minh</p>
+                <p>VPGD: DHKHTN</p>
+                <p>MSSV: 1112100 - 1112194</p>
+                <p>DĐ: 0987.99.68.68/ 0913.526.260/</p>
+                <p>0974.94.99.86/ 0946.68.99.66/ 0983.21.36.68</p>
+                <p>Fax: 08.73046898</p>
+                <p>Email: hoang4893@gmail.com</p>
+            </div>
+        </div><!-- end footer -->
+
+    </div><!-- end container -->
+</body>
+@RenderSection("Scripts", false)
+
+
+</html>

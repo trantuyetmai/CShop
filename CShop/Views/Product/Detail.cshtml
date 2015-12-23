@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Detail";
+}
+@section Styles{
+<link href="~/Content/product-detail.css" rel="stylesheet" />
+}
+@section Scripts{
+<script src="~/Scripts/product-detail.js"></script>
+}
+
+<div id="detail-category">
+    <span id="image-category">
+        <img src="../images/CPU/pentium_dual_core_g2030_big.jpg" />
+    </span>
+    <div id="name-category">CPU Intel Pentium Dual Core G2030</div>
+    <div class="category-status"> <span class="brown-color"> Tình trạng : </span> <span class="orange-color"> Có hàng </span> </div>
+    <div class="category-status"><span class="brown-color">Chi tiết: </span>3.0Ghz , 3Mb cache,Box </div>
+    <div class="category-status" id="cost-category">Giá bán: 1.240.000 VNĐ</div>
+    <div class="category-status">
+        <div class="button">MUA NGAY</div>
+    </div>
+
+    <div class="ship">
+        <div id="support-tranport">
+            <img src="../images/small-truck.png" />
+            <span>
+                GIAO HÀNG LÊN TỚI 150KM:
+            </span>
+        </div>
+        <ul class="ship-content">
+            <li>Khung giờ giao hàng từ 8h - 20h hàng ngày.</li>
+            <li>Nhận hàng trong 12h tại Hà Nội và TPHCM.</li>
+            <li>Bảo hành chính hãng.</li>
+        </ul>
+    </div>
+</div>
+
+<div id="comment-box-content">
+    <h2>Bình luận </h2>
+
+    <input id="comment-name" placeholder="Name!" type="text" name="comment-name"> </input>
+    <textarea id="comment-area" placeholder="Enter your comment here!" cols="100%" rows="4" name="comment-area"></textarea>
+    <button data-url='@Url.Action("","Comment")' id="button-comment" name="button-comment" value="Post comment">Post comment </button>
+    <p id="error-messeage"> </p>
+    <div id="list-comment">Danh sách bình luận </div>
+    
+    @if (ViewBag.Comments != null){
+        <div>I'm here</div>
+        foreach (var cm in ViewBag.Comments)
+        {
+            <div class="comment-box-username">UserId: @cm.UserId</div>
+            <div class="comment-box-text">@cm.Content</div>
+            <div class='comment-function-edit'>Sửa</div>
+            <div class='comment-function-delete'>Xóa</div>
+        }
+    }
+    else{
+        <div>I'm here</div>
+    }
+    
+    
+</div>      

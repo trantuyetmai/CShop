@@ -1,0 +1,44 @@
+﻿@model PagedList.IPagedList<WebApplication1.ModelsTest.Product>
+@using PagedList.Mvc 
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section Styles{
+<link href="~/Content/home.css" rel="stylesheet" />
+<link href="~/Content/nslide.css" rel="stylesheet" />
+}
+@section Scripts{
+<script src="~/Scripts/nslider.js"></script>
+}
+
+<div id='home-content'>
+    <div id='slide-product' class='nslider-box' width='750' height='300'>
+        <img class='nslider-item' src='images/keyboard.png'></img>
+        <img class='nslider-item' src='images/GPU.png'></img>
+        <img class='nslider-item' src='images/main.png'></img>
+        <img class='nslider-item' src='images/headphone.jpg'></img>
+        <img class='nslider-item' src='images/logitech.jpg'></img>
+    </div>
+    <!-- Begin new products -->
+    <div id='new-products'>
+        @foreach (var p in @Model)
+        {
+            <a href="@Url.Action("Details","Product", new {Id=@p.Id, area=""})">
+            <div class='product'>
+                <img src='@Url.Content("~" + @p.Image)' />
+                <div class='name-product'>@p.Name</div>
+                <div class='price-product'>@p.Cost VND</div>
+             </div>
+             </a>
+        }       
+        
+    </div>
+    <!-- End new products -->
+</div>
+@* Paginate *@
+<div class="pagination-centered">
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>

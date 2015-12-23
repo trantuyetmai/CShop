@@ -1,0 +1,62 @@
+﻿@model WebApplication1.ModelsTest.Product
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+@section Styles{
+    <link href="~/Content/category.css" rel="stylesheet" />
+    <link href="~/Content/product.css" rel="stylesheet" type="text/css" />
+}
+
+<h2>Bạn có chắc rằng bạn muốn xóa?</h2>
+    <fieldset class="create-field">
+        <legend>Xóa sản phẩm</legend>
+
+        <div class="editor-field">
+            <label>Tên sản phẩm</label>
+            @Html.DisplayFor(model => model.Name)
+        </div>
+
+        <div class="editor-field">
+            <label>Giá</label>
+
+            @Html.DisplayFor(model => model.Cost)
+        </div>
+
+        <div class="editor-field">
+            <label>Chi tiết</label>
+
+            @Html.DisplayFor(model => model.Detail)
+        </div>
+        <div class="editor-field">
+            <label>Tình trạng </label>
+
+            @Html.DisplayFor(model => model.Status)
+        </div>
+
+        <div class="editor-field">
+            <label>Loại sản phẩm</label>
+            @Html.DisplayFor(model => model.Category.Name)
+        </div>
+
+        <div class="editor-field">
+            <label>Nhà sản xuất</label>
+            @Html.DisplayFor(model => model.Publisher.Name)
+        </div>
+        
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+    <p class="button-field">
+
+        <input type="submit" value="Xóa sản phẩm" />
+       
+    </p>
+        }
+    </fieldset>
+<div class="back-function">
+    @Html.ActionLink("Quay trở lại trang quản lý", "Index")
+</div>
+
+

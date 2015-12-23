@@ -1,0 +1,28 @@
+﻿
+@if (ViewBag.Comments != null)
+{
+    foreach (var cm in ViewBag.Comments)
+    {
+        <div class="comment-box-user" data-postid="@cm.Id">
+            <div class="comment-box-username">@cm.SenderName</div>
+            <div class="comment-box-text">@cm.Content</div>
+            <div class='comment-function edit-function'>Sửa | </div>
+            <div class='comment-function delete-function'>Xóa</div>
+        </div>
+    }
+}
+
+<div class="pageNumber">
+    @{
+        int count = ViewBag.Comments.TotalItemCount / ViewBag.Comments.PageSize;
+        int x = ViewBag.Comments.TotalItemCount % ViewBag.Comments.PageSize;
+        if (x > 0)
+        {
+            count = count + 1;
+        }
+        for (int i = 0; i < count; i++)
+        {
+            <a id="@(i+1)" name="@ViewBag.Comments.PageSize" class="pageComment">@(i + 1)</a>
+        }
+    }
+</div>

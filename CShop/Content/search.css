@@ -1,0 +1,222 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+
+.search-content
+{
+	margin-top:35px;
+	margin-right:20px;
+}
+.product-filter
+{
+	background-color: #fff;
+	border: 3px solid #999;
+	border-right: 0;
+	font-size: 13px;
+	height: 40px;
+	line-height: 34px;
+	color:#000;
+-webkit-box-shadow: 18px -6px 35px -6px rgba(245,245,245,0.71);
+-moz-box-shadow: 18px -6px 35px -6px rgba(245,245,245,0.71);
+box-shadow: 18px -6px 35px -6px rgba(245,245,245,0.71);
+margin-top:20px;
+}
+
+.product-filter ul
+{
+	list-style:none;
+	margin: 0	 auto;
+	padding-left:0px;
+    z-index: 3;
+    left:0;
+}
+
+.product-filter ul li
+{
+	cursor:pointer;
+}
+
+.product-filter .filter  ul 
+{
+	background-color: #FFF;
+	border: 1px solid #d6d6d6;
+	float:none;
+	position: absolute;
+	max-width:200px;
+	min-width:150px;
+	display:none;
+}
+
+
+.product-filter .filter:hover  ul 
+{
+	display:block;
+}
+
+.filter  ul  li
+{
+	padding-left:20px;
+	border-bottom:1px solid #d6d6d6;
+	
+}
+
+.product-filter ul  li:hover
+{
+	background: #ebe9f9; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ebe9f9 0%, #d8d0ef 50%, #cec7ec 51%, #c1bfea 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebe9f9), color-stop(50%,#d8d0ef), color-stop(51%,#cec7ec), color-stop(100%,#c1bfea)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ebe9f9 0%,#d8d0ef 50%,#cec7ec 51%,#c1bfea 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ebe9f9 0%,#d8d0ef 50%,#cec7ec 51%,#c1bfea 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ebe9f9 0%,#d8d0ef 50%,#cec7ec 51%,#c1bfea 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ebe9f9 0%,#d8d0ef 50%,#cec7ec 51%,#c1bfea 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebe9f9', endColorstr='#c1bfea',GradientType=0 ); /* IE6-9 */
+
+}
+.filter-name
+{
+	cursor:pointer;
+}
+
+.filter 
+{
+	float: left;
+	height: 34px;
+	background: url(../images/arrow-down-new.png) no-repeat;
+	background-position: right center;
+	padding: 0 13px;
+    position:relative;
+    margin-right:10px;
+    padding-right:20px;
+}
+
+
+
+.title
+{
+	background: url(../images/arrow11.png) #eee;
+	background-position: right center;
+	background-repeat: no-repeat;
+	padding-right: 13px;
+	color:#000;
+	float:left;
+	padding-left:13px;
+	list-style:none;
+}
+
+.filter-list-wrapper 
+{
+	display: none;
+	float: left;
+	position: relative;
+}
+
+.filter-list 
+{
+
+}
+
+.filter-name hover
+{
+	float:left;
+	margin: 5px 40px;
+	padding: 10px 20px 13px ;
+	cursor:pointer;
+	
+}
+
+.nolist 
+{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.checked 
+{
+	font-weight: bold;
+	list-style:url(../images/product-filter-checked.png) inside;
+}
+.title-step
+{
+	background: url(images/step.jpg) 0 0 no-repeat;
+	height: 29px;
+	width: 721px;
+	margin-top:35px;
+}
+
+
+.title-step ul li 
+{
+	display: block;
+	float: left;
+	height: 29px;
+	line-height: 29px;
+	background: url(../images/img_stepon.jpg) 0 -29px no-repeat;
+	padding-left: 12px;
+	margin-left: -14px;
+	position: relative;
+	
+}
+
+.title-step ul li.active div {
+	height: 29px;
+	background: url(../images/img_stepon.jpg) left -203px repeat-x;
+	padding-left: 5px;
+}
+
+.title-step ul li div span 
+{
+	display: inline-block;
+	zoom: 1;
+	height: 29px;
+	background: url(../images/img_stepon.jpg) right -145px no-repeat;
+	padding-right: 17px;
+}
+
+.active 
+{
+	background-position: 0 -29px;
+}
+
+.product
+{
+	width:30%;
+	float:left;
+	height:245px;
+	text-align:center ;
+	margin: 5px 10px;
+	position:relative;    	
+}
+.product > img 
+{
+    width:80%;
+    height:70%;
+}
+
+.name-product
+{
+	margin:4px 0;
+    max-height:37px;
+}
+.price-product {
+	bottom: 0;
+	min-width: 150px;
+	width:100%;
+	height: 30px;
+	padding: 6px 0 0;
+	background: #1F2022;
+	box-shadow: 0 1px 3px #1D10C9;
+	color:#859AFC;
+	text-shadow: 2px 0px 2px #6B3738;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+}
+
+#products{
+    width: 100%;
+    min-height:700px;
+}
+
+.name-product:hover
+{
+    color:red;
+}

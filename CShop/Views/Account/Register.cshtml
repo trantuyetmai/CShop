@@ -1,0 +1,57 @@
+﻿@model WebApplication1.ModelsTest.RegisterViewModel
+@using CaptchaMvc.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+@section Styles{
+    <link href="~/Content/register.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <div id='registry-content'>
+        <h2>Đăng ký</h2>
+        <form id='register-frm'>
+            <div class="field">
+                @Html.LabelFor(m => m.UserName)
+                @Html.EditorFor(m => m.UserName, "fullname")
+            </div>
+            <div class='field'>
+                @Html.LabelFor(m => m.Password)
+                @Html.EditorFor(m => m.Password, "pass")
+            </div>
+            <div class='field'>
+                @Html.LabelFor(m => m.ConfirmPassword)
+                @Html.EditorFor(m => m.ConfirmPassword, "confirm")
+            </div>
+            <div class='field'>
+                @Html.LabelFor(m => m.Name)
+                @Html.EditorFor(m => m.Name, "name")
+            </div>
+            <div class='field'>
+                @Html.LabelFor(m => m.Phone)
+                @Html.EditorFor(m => m.Phone, "phonenumber")
+            </div>
+            <div class='field'>
+                @Html.LabelFor(m => m.Address)
+                @Html.EditorFor(m => m.Address, "address")
+            </div>
+            <div class='field'>
+                @Html.LabelFor(m => m.Email)
+                @Html.EditorFor(m => m.Email, "email")
+            </div>
+            <div class='field'>
+                <label>Mã xác nhận</label>
+                @Html.Captcha("Làm lại", "",5, "Is required field.", true)
+            </div>
+            <div class="row">
+                <input type='submit' class="col-md-2 col-md-offset-4 btn btn-danger btn-lg" name='submit' value="Đăng ký" />
+            </div>
+
+        </form>
+
+    </div>
+}

@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@section Styles{
+<link href="~/Content/contact.css" rel="stylesheet" />
+}
+
+<div id='contact-content'>
+    <p><b>Liên hệ</b></p>
+    <!-- begin embeded map -->
+    <iframe id='contact-map' src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3919.4340159265003!2d106.6955126!3d10.7780329!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f399571095d%3A0xce69d336def9f55b!2zRGluaCDEkOG7mWMgTOG6rXAsIE5hbSBL4buzIEto4bufaSBOZ2jEqWEsIELhur9uIFRow6BuaCwgUXXhuq1uIDE!5e0!3m2!1svi!2s!4v1397725053876" width="600" height="450" frameborder="0" style="border:0"></iframe>
+    <!-- end embeded map -->
+    <!-- begin contact form -->
+    <div style="height:100%">
+        <form id='contact-form' class="form-group" style="margin-top:30px">
+            <div class='form-group col-md-6 col-md-offset-1'>
+                <input class='form-control' type="text" name='fullname' placeholder="Họ và tên" />
+            </div>
+            <div class='form-group col-md-6 col-md-offset-1'>
+                <input class='form-control' type="text" name='phonenumber' placeholder="Số điện thoại" />
+            </div>
+            <div class='form-group col-md-6 col-md-offset-1'>
+                <input class='form-control' type="text" name='email' placeholder="email" />
+            </div>
+            <div class='form-group col-md-6 col-md-offset-1'>
+                <textarea class='form-control' name='description' placeholder="Nội dung"></textarea>
+            </div>
+
+            <div class='form-group col-md-6 col-md-offset-1'>
+                <img src='' class=" img-responsive" />
+                <input class='form-control' type="text" id='captcha' name='captcha' placeholder="Mã bảo mật" />
+            </div>
+            <div class="form-group col-md-6 col-md-offset-1">
+                <input type="submit" id='submit' name='submit' value="Gửi liên hệ" class="btn btn-danger" />
+                <button type="button" id='btn-refresh' class="btn btn-danger">Làm lại</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- end contact form -->
+
+</div>    	

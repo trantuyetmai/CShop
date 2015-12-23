@@ -1,0 +1,50 @@
+﻿@model WebApplication1.ModelsTest.Category
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@section Styles{
+<link href="~/Content/category.css" rel="stylesheet" />
+<link href="~/Content/product.css" rel="stylesheet" type="text/css" />
+}
+
+
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+   <div id="edit-category">
+
+        <fieldset class="create-field">
+
+        <legend>Sửa loại sản phẩm</legend>
+
+            <div class="editor-field">
+                <label>Tên loại</label>
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+
+            <div class="editor-field">
+                <label>Tình trạng</label>
+                @Html.EditorFor(model => model.Status)
+                @Html.ValidationMessageFor(model => model.Status)
+            </div>
+
+
+        <div class="button-field">
+            <input type="submit" value="Sửa" />
+        </div>
+    </fieldset>
+        </div>
+}
+
+<div class="back-function">
+    @Html.ActionLink("Quay lại trang quản lý", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

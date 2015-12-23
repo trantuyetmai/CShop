@@ -1,0 +1,86 @@
+﻿@model List<WebApplication1.ModelsTest.ShoppingCartViewModels>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/shoppingcart.css")
+@Scripts.Render("~/Scripts/product-detail.js")
+
+<div class="cart-info">
+    <p id="erroMess-cart">@ViewBag.Mess</p>
+    <a class="history-shopping" href="@Url.Action("ShoppingHistory", "ShoppingCart")">Lịch sử mua hàng</a>
+    <h1>Giỏ hàng</h1>
+    <br />
+
+    @{
+        if (Model.Count == 0)
+        {
+            <div class="cart-item-table">
+                <p>Giỏ hàng không có sản phẩm nào!</p>
+            </div>
+        <div>
+            <a class="pay-btn" href="@Url.Action("Index","Home")">Tiếp tục mua sắm</a>
+        </div>
+        }
+        else
+        {
+            
+            <div class="cart-item-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <td id="text-left">Tên sản phẩm</td>
+                            <td>Loại sản phẩm</td>
+                            <td>Số lượng</td>
+                            <td id="text-right">Giá tiền</td>
+                            <td id="text-right">Giá</td>
+                        </tr>
+                    </thead>
+                    @{
+            double total = 0;
+            foreach (var item in Model)
+            {
+                total += item.TotalCost;
+                String x = "cartitem" + item.ProductId;
+                <tr class="@x">
+                    <td id="text-left">
+                        <a href='@Url.Action("Details","Product", new { id = item.ProductId })'>
+                        @Html.DisplayFor(modelItem => item.ProductName, new { id = item.ProductId })
+                        </a>
+                    </td>
+                    <td>@item.Category</td>
+                    <td><span>@item.ProductQuantity</span> <img src="~/Images/remove.png" id="@item.ProductId" class="remove-btn" data-url='@Url.Action("", "ShoppingCart")' /></td>
+                    <td id="text-right">@Html.DisplayFor(modelItem => item.Cost, new { id = item.ProductId })</td>
+                    <td id="text-right">@Html.DisplayFor(modelItem => item.TotalCost, new { id = item.ProductId })</td>
+                </tr>
+            }
+
+                    }
+                </table>
+
+
+                <div class="cart-total">
+                    <hr />
+                    <span id="cost-text"> @total</span>
+                    <span id="total-text">Tổng tiền: </span>
+                </div>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="@Url.Action("Order","ShoppingCart")" class="pay-btn">Thanh toán</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Order","ShoppingCart")" class="pay-btn">Thanh toán</a>
+                    <script>
+                        $('.pay-btn').on('click', function () {
+                            alert('Vui lòng đăng nhập!');
+                        });
+
+                    </script>
+                }
+            </div>
+        }
+    }
+</div>

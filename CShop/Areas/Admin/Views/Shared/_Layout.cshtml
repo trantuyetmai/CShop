@@ -1,0 +1,170 @@
+﻿<!DOCTYPE>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+
+
+    @Styles.Render("~/css/bootstrap")
+    @Styles.Render("~/css/mystyles")
+    @Scripts.Render("~/script/jquery")
+    @Scripts.Render("~/script/bootstrap")
+    @Scripts.Render("~/script/myscripts")
+    @RenderSection("Styles", false)
+    
+</head>
+<body>
+    @Html.Raw(TempData["msg"])
+    <div id="container">
+        <!-- begin header -->
+        <div id="header">
+            <div id="logo"><img src="~/images/logo.png" /></div><!-- logo -->
+            <div class="navigations">
+                    
+                <div id="cart" class="navigation">
+                    <a href='@Url.Action("Index", "Account")'>
+                        <img src="~/images/icon_cart.png" />
+                        <div>Giỏ hàng</div>
+                    </a>
+                </div>
+                <div id="contact" class="navigation">
+
+                    <a href='@Url.Action("Index", "Account")'>
+                        <img src="~/images/icon_contact.png" />
+                        <div>Liên hệ</div>
+                    </a>
+                </div>
+                <div id="search" class="navigation">
+                    <a href='@Url.Action("Index", "Account")'>
+                        <img src="~/images/icon_search.png" />
+                        <div>Tìm kiếm</div>
+                    </a>
+                </div>
+                <div id="home" class="navigation">
+                    <a href="~/Home/Index">
+                        <img src="~/images/icon_home.png" />
+                        <div>Trang chủ</div>
+                    </a>
+                </div>
+                @Html.Partial("_LoginPartial")
+
+                
+            </div>
+        </div>
+        <!-- end header -->
+        <!-- begin menu-and-support -->
+        <div id="menu-and-support">
+            <!-- begin wrapper menu -->
+            <div id="top-menu" class="wrapper-menu">
+                <ul>
+                    <li><a href='@Url.Action("Index","Account")'>Quản lý tài khoản</a></li>
+                    <li class="has-child">
+                        <a href='@Url.Action("Index","Category")'>Gian hàng</a>
+                        <ul>
+                            <a href="@Url.Action("ViewByType", "Product", new { id = "1"})"><li>CPU</li></a>
+                            <a href="@Url.Action("ViewByType", "Product", new { id = "2"})"><li>Card màn hình</li></a>
+                            <a href="@Url.Action("ViewByType", "Product", new { id = "3"})"><li>RAM</li></a>
+                            <li>Mouse game</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Index","Publisher")'>Nhà phân phối</a>
+
+                    </li>
+                    <li><a href='@Url.Action("Index","Product")'>Sản phẩm</a></li>
+                    <li><a href='@Url.Action("Index","Order")'>Đơn hàng</a></li>
+                </ul>
+            </div>
+            <!-- end wrapper menu -->
+            <div id="support">
+                <div id='supporter-1' class='supporter'>
+                    <img src="~/images/yahoo_on.png" />
+                    <div class='desc'>Kỹ thuật 1 (0908989911)</div>
+                </div>
+                <div id='supporter-2' class='supporter'>
+                    <img src="~/images/yahoo_on.png" />
+                    <div class='desc'>Kỹ thuật 2 (0908989911)</div>
+                </div>
+                <div id='supporter-3' class='supporter'>
+                    <img src="~/images/yahoo_off.png" />
+                    <div class='desc'>Kỹ thuật 3 (0908989911)</div>
+                </div>
+                <div id='supporter-4' class='supporter'>
+                    <img src="~/images/yahoo_on.png" />
+                    <div class='desc'>Chăm sóc khách hàng 1 (0908989911)</div>
+                </div>
+                <div id='supporter-5' class='supporter'>
+                    <img src="~/images/yahoo_off.png" />
+                    <div class='desc'>Chăm sóc khách hàng 2 (0908989911)</div>
+                </div>
+                <div id='supporter-6' class='supporter'>
+                    <img src="~/images/yahoo_off.png" />
+                    <div class='desc'>Chăm sóc khách hàng 3 (0908989911)</div>
+                </div>
+
+                <form id="quick-search" action="~/Product/Search" method="get">
+                    <input type="text" id='search-input' name='Name' placeholder='Tìm kiếm...' />
+                </form>
+                <img id="search-img" src="~/images/search.png" />
+                <img id='call-img' src="~/images/call_icon.png" />
+                <span id='support-phone'>090.8989.936</span>
+            </div><!-- support -->
+        </div><!-- end menu-and-support-->
+
+        <!-- begin content -->
+        <div id="content">
+
+            <!-- begin left content -->
+            <div id="left-content">
+                <div id="cat-product" class="left-box">
+                    <div class="cat-head">Danh mục sản phẩm</div><!-- catogory title -->
+                  
+                    </div><!-- details -->
+                </div><!-- category product -->
+                <!-- popular-product-->
+                
+            </div>
+            <!-- end left content -->
+            <!-- begin right content -->
+            <div id="right-content">
+                <!-- =================================== Thêm phần mới tại đây =========================== -->
+                @RenderBody()
+            </div>
+            <!-- end right content -->
+
+        </div><!-- end content-->
+        <!-- begin footer -->
+        <div id="footer">
+            <div id='footer-logo'></div>
+            <div id='partners'>
+                <p><b>Đối tác</b></p>
+                <img src='~/images/acer.jpg' />
+                <img src='~/images/amd.jpg' />
+                <img src='~/images/asrock.jpg' />
+                <img src='~/images/asus.jpg' />
+                <img src='~/images/gigabyte.jpg' />
+                <img src='~/images/Intel.jpg' />
+                <img src='~/images/kingston.jpg' />
+                <img src='~/images/logitech.jpg' />
+                <img src='~/images/nvidia.jpg' />
+            </div>
+            <div id='footer-contact'>
+                <p><b>Liên hệ</b></p>
+                <b>CÔNG TY TRÁCH NHIỆM 2 THÀNH VIÊN</b>
+                <p>Địa chỉ: 135 Nam Kỳ Khởi Nghĩa, Bến Thành, Hồ Chí Minh</p>
+                <p>VPGD: Số 4 Yên Bình, Phúc La, Hà Đông, Hà Nội</p>
+                <p>Điện thoại: 04.35541904</p>
+                <p>DĐ: 0987.99.68.68/ 0913.526.260/</p>
+                <p>0974.94.99.86/ 0946.68.99.66/ 0983.21.36.68</p>
+                <p>Fax: 04.73046898</p>
+                <p>Email: haichangtrai@gmail.com</p>
+            </div>
+        </div><!-- end footer -->
+
+    </div><!-- end container -->
+</body>
+@RenderSection("Scripts", false)
+
+
+</html>

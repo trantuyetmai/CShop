@@ -1,0 +1,16 @@
+﻿
+<div id="add-category">
+    <div class="alert-info">@ViewBag.Mess</div>
+    <form action="~/Admin/Category/Add" method="post">
+        <div class="form-group">
+            <input class="form-control" type="text" name="Name" placeholder="Tên gian hàng" />
+        </div>
+        
+        <div class="form-group">
+            <label class="form-control-static">Tình trạng</label>
+            <input type="checkbox" class="form-control" name="Status" value="true" checked/>
+        </div>
+        <input class="btn btn-default" type="submit" name="submit" value="Thêm" />
+        <a href="~/Admin/Category/Index"><input class="btn btn-default" type="button" value="Quản lý" /> </a>
+    </form>
+</div>

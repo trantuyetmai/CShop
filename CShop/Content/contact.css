@@ -1,0 +1,67 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+#contact-content
+{
+	background:#ECECEC;
+	color: #1E1E1E;
+	padding: 20px;
+}
+#contact-content > p
+{
+	color:red;
+}
+#contact-map
+{
+	width:700px;
+	height:400px;
+	-webkit-box-shadow: 0px 0px 5px 4px rgba(177, 177, 177, 0.75);
+-moz-box-shadow:    0px 0px 5px 4px rgba(177, 177, 177, 0.75);
+box-shadow:         0px 0px 5px 4px rgba(177, 177, 177, 0.75);
+}
+.field
+{
+	margin: 20px 2px;
+}
+.field > label
+{
+	width:95px;
+	text-align:right;
+	display:inline-table;
+	position:relative;
+	vertical-align:middle;
+}
+.text-input
+{
+	width:250px;
+	resize:none;
+	background:transparent;
+	border: 1px solid rgba(46,46,46,0.44);
+	border-radius: 3px;
+	padding: 0 0 0 3px;
+}
+.field > input
+{
+	height:25px;
+}
+#description-field > label
+{
+	position:relative;
+	top: -20px;
+}
+#captcha-field > img
+{
+	width:80px;
+	height:25px;
+	position:relative;
+	top:8px;
+	border-radius:3px;
+}
+#captcha-field > input
+{
+	width: 100px;
+}
+#button-field
+{
+	margin: 0 0 0 100px;
+}

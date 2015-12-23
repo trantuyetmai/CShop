@@ -1,0 +1,52 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+#home-content
+{
+}
+
+#new-products
+{
+	margin-top:20px;
+}
+
+.product
+{
+	width:30%;
+	float:left;
+	height:245px;
+	text-align:center ;
+	margin: 5px 10px;
+	position:relative;    	
+}
+.product > img 
+{
+    width:80%;
+    height:70%;
+}
+
+
+.name-product
+{
+	margin:4px 0;
+    max-height:37px;
+}
+
+.name-product:hover
+{
+    color:red;
+}
+
+.price-product {
+	bottom: 0;
+	min-width: 150px;
+	width:100%;
+	height: 30px;
+	padding: 6px 0 0;
+	background: #1F2022;
+	box-shadow: 0 1px 3px #1D10C9;
+	color:#859AFC;
+	text-shadow: 2px 0px 2px #6B3738;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+}
+

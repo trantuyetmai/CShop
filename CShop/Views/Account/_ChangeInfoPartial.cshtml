@@ -1,0 +1,44 @@
+﻿@model WebApplication1.ModelsTest.ChangeInfoViewModel
+
+@using CaptchaMvc.HtmlHelpers
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("ChangeUserInfo", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+
+    <div id='changeinfo-form'>
+        <h3>Thay đổi thông tin</h3>
+        <hr />
+
+        <form id='register-frm'>
+            @Html.AntiForgeryToken()
+            <div class='field'>
+                @Html.LabelFor(m => m.Name)
+                @Html.EditorFor(m => m.Name, "name")
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            <div class='field'>
+                @Html.LabelFor(m => m.Phone)
+                @Html.EditorFor(m => m.Phone, "phonenumber")
+                @Html.ValidationMessageFor(model => model.Phone)
+            </div>
+            <div class='field'>
+                @Html.LabelFor(m => m.Email)
+                @Html.EditorFor(m => m.Email, "email")
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+            <div class='field'>
+                @Html.LabelFor(m => m.Address)
+                @Html.EditorFor(m => m.Address, "address")
+                @Html.ValidationMessageFor(model => model.Address)
+            </div>
+            <div>
+                <input type='submit' class="btn-field" name='submit' value="Thay đổi" />
+            </div>
+
+        </form>
+
+    </div>
+}

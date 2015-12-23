@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNet.Identity
+
+@if (Request.IsAuthenticated)
+{
+
+    using (Html.BeginForm("LogOff", "Account", new { area=""}, FormMethod.Get, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+
+    <ul class="nav navbar-nav navbar-right user-info">
+    @if (!User.IsInRole("Admin"))
+    { 
+        <li>           
+            @Html.ActionLink("Xin chào " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+    }
+    else
+    { 
+        <li>           
+            @Html.ActionLink("Xin chào " + User.Identity.GetUserName() + "!", "Index", "Account", new {area="Admin" }, htmlAttributes: new { title = "Manage" })
+        </li>
+    }
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
+    </ul>
+    }
+}
+else
+{
+    <div id="register" class="navigation">
+        <a href='@Url.Action("Register","Account")'>
+            <img src="~/images/icon_register.png" />
+            <div>Đăng ký</div>
+        </a>
+    </div>
+    <div id="login" class="navigation">
+        <img src="~/images/icon_login.png" />
+        <div>
+            Đăng nhập
+            <div id='login-panel'>
+                @Html.Partial("_Login")
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

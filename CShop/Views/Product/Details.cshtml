@@ -1,0 +1,128 @@
+﻿@model WebApplication1.ModelsTest.Product
+@using MvcPaging
+@{
+    ViewBag.Title = "Details";
+}
+@section Styles{
+    <link href="~/Content/product-detail.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/Scripts/product-detail.js"></script>
+}
+
+
+
+<div id="detail-category">
+    <p id="erroMess-cart"></p>
+    <span id="image-category">
+        <img src='@Url.Content("~" + @Model.Image)' />
+    </span>
+    
+
+    <div class="product-right-content">
+        <div id="name-category">@Model.Name</div>
+
+        <div class="category-status">
+            <span class="brown-color"> Tình trạng : </span>
+            <span class="orange-color">
+                @if (Model.Status)
+                { <span>Còn hàng</span> }
+                else
+                { <span>Hết hàng</span> }
+            </span>
+        </div>
+        <div class="category-status">
+            <span class="brown-color">Chi tiết: </span>@Model.Detail
+        </div>
+        <div class="category-status" id="cost-category">Giá bán: @Model.Cost VNĐ</div>
+        <div class="category-status">
+            <span>Số lượng</span>
+            <input type="text" id="quantity" value="1" />
+            <div class="button-add" data-url='@Url.Action("","ShoppingCart")'>THÊM VÀO GIỎ</div>
+        </div>
+        <div class="category-status">
+            <p>Số lượt xem: @Model.TimeAccess</p>
+        </div>
+
+        <div class="ship">
+            <div id="support-tranport">
+                <img src="~/images/small-truck.png" />
+                <span>
+                    GIAO HÀNG LÊN TỚI 150KM:
+                </span>
+            </div>
+            <ul class="ship-content">
+                <li>Khung giờ giao hàng từ 8h - 20h hàng ngày.</li>
+                <li>Nhận hàng trong 12h tại Hà Nội và TPHCM.</li>
+                <li>Bảo hành chính hãng.</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div id='new-products'>
+    <h3>Sản phẩm liên quan</h3>
+    @foreach (var p in ViewBag.RelateProducts)
+    {
+        <a href="@Url.Action("Details","Product", new {Id=@p.Id})">
+            <div class='product'>
+                <img src='@Url.Content("~" + @p.Image)' />
+                <div class='name-product'>@p.Name</div>
+                <div class='price-product'>@p.Cost VND</div>
+            </div>
+        </a>
+    }
+
+</div>
+
+
+
+<div id="comment-box-content" data-productid="@Model.Id">
+    <h2>Bình luận </h2>
+    @{
+        if (Request.IsAuthenticated)
+        {
+            <input id="comment-name" placeholder="Name!" type="text" name="comment-name" disabled ="disabled" value="@User.Identity.Name">
+        }
+        else
+        {
+            <input id="comment-name" placeholder="Name!" type="text" name="comment-name">
+        }
+    }
+    
+    <textarea id="comment-area" placeholder="Enter your comment here!" cols="100%" rows="4" name="comment-area"></textarea>
+    <button data-url='@Url.Action("","Comment")' id="button-comment" name="button-comment" value="Post comment">Post comment </button>
+    <p id="error-messeage"> </p>
+
+        <div id="list-comment">
+            <div class="title">Danh sách bình luận</div>
+
+         
+            
+            @{Html.RenderPartial("PagingPartial");}
+
+        </div>
+    
+    @*End List-comment*@
+
+    <script type="text/javascript">
+
+        function beginPaging(args) {
+            // Animate
+            $('#list-comment').fadeOut('normal');
+        }
+
+        function successPaging() {
+            // Animate
+            $('#list-comment').fadeIn('normal');
+            $('a').tooltip();
+        }
+
+        function failurePaging() {
+            alert("Could not retrieve list.");
+        }
+
+    </script>
+
+</div>
